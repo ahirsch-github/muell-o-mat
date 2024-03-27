@@ -28,6 +28,7 @@ export class HomePage implements OnDestroy{
   classifiedCategory: string = '';
   buttonPressed: boolean = false;
   isLoading: boolean = false;
+  isFinished: boolean = false;
 
   constructor(private arduinoDataService: ArduinoDataService) {}
 
@@ -127,6 +128,10 @@ export class HomePage implements OnDestroy{
     // setze einen timer von 7 sekunden, danach kann der button wieder gedrückt werden
     setTimeout(() => {
       this.buttonPressed = false;
+      this.isFinished = true;
+      setTimeout(() => {
+        this.isFinished = false;
+      }, 2500);
     }, 7000);
   }
 

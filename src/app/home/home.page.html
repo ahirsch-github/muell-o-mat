@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary" style="height: 10rem; display: flex; justify-content: center; align-items: center; ">
+  <ion-toolbar color="primary" style="height: 9rem; display: flex; justify-content: center; align-items: center; ">
     <ion-title class="sigmar-regular" style="text-align: center; font-size:xx-large;">
       Müll-O-Mat
     </ion-title>
@@ -9,11 +9,13 @@
 <ion-content [fullscreen]="true">
   <div class="ion-padding center-content" style="height: 100%;">
     <br>
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden;">
-      <h3 class="shippori-antique">Um herauszufinden, in welche Tonne dein Müll kommmt, lege den Müll vor die Kamera und drücke auf den Start-Button.</h3>
-    </div> 
+    <ng-container *ngIf="buttonPressed !== true && isLoading !== true && isFinished !== true">
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden;">
+        <h3 class="shippori-antique">Um herauszufinden, in welche Tonne dein Müll kommmt, lege den Müll vor die Kamera und drücke auf den Start-Button.</h3>
+      </div> 
+    </ng-container>
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 50vh;">
-        <ng-container *ngIf="buttonPressed === true && isLoading === false">
+        <ng-container *ngIf="buttonPressed === true && isLoading === false && isFinished !== true">
           <h1 class="shippori-antique">Das ist zu {{ classificationPropability }}% ein {{ classifiedCategory }} und gehört in den</h1>
           <div [style.background-color]="getTrashColor(classifiedTrashCategory)" class="sigmar-regular" style="
           margin: 20px; padding-inline-start: 40px; padding-inline-end: 40px; padding-top: 10px; padding-bottom: 15px;">
@@ -23,11 +25,19 @@
               <h2> {{ getCategoryAdvice() }}</h2>
           </div>
         </ng-container>
-        <ng-container *ngIf="buttonPressed === false">
-          <ion-button (click)="onButtonPressed()" color="primary" size="large" class="sigmar-regular">Bild aufnehmen</ion-button>
+        <ng-container *ngIf="buttonPressed === false && isFinished !== true">
+          <ion-button (click)="onButtonPressed()" color="primary" style="height: 100px; width: 300px; font-size: x-large;" class="sigmar-regular">Bild aufnehmen</ion-button>
         </ng-container>
-        <ng-container *ngIf="isLoading === true">
-          <ion-spinner name="circles" style="height: 56px; width: 56px;"></ion-spinner>
+        <ng-container *ngIf="isLoading === true && isFinished !== true">
+          <ion-spinner name="circles" style="margin-top: 10px; height: 56px; width: 56px;" message="Daten werden verarbeitet..."></ion-spinner>
+          <ion-label class="shippori-antique" style="font-size: large; margin-top: 15px;">Daten werden verarbeitet...</ion-label>
+        </ng-container>
+        <ng-container *ngIf="isFinished === true">
+          <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <ion-label class="shippori-antique" style="font-size: x-large;">
+              Danke für die Nutzung des Müll-O-Mats!
+            </ion-label>
+          </div>
         </ng-container>
       </div>
   </div>
