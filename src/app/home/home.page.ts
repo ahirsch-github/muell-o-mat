@@ -20,9 +20,10 @@ export class HomePage implements OnDestroy{
   private dataSubscription: Subscription | undefined;
   private categoryCounts: CategoryCount = {};
   private results: ClassificationResult[] = [];
-
+  private predictions: { category: string, value: number }[] = [];
+  
+  classificationPropability: number = 0.0;
   classificationResults: ClassificationResult = {};
-  predictions: string[] = [];
   classifiedTrashCategory: string = '';
   classifiedCategory: string = '';
   buttonPressed: boolean = false;
@@ -68,6 +69,7 @@ export class HomePage implements OnDestroy{
           highestValue = value;
           highestKey = key;
         }
+        this.predictions.push({ category: key, value: value });
       }
 
       if (highestKey) {
@@ -92,8 +94,18 @@ export class HomePage implements OnDestroy{
     }
 
     console.log(`Most frequent category: ${finalCategory}`);
-    // Setzen Sie hier Ihre endgültige Kategorie
-    this.classifiedCategory = finalCategory;  
+    this.classifiedCategory = finalCategory;
+    
+    this.classificationPropability = 0.0;
+    for (const prediction of this.predictions) {
+      if (prediction.category === finalCategory) {
+        this.classificationPropability += prediction.value;
+      }
+    }
+    this.classificationPropability /= 3;
+    // rundet die Wahrscheinlichkeit auf 2 Nachkommastellen und multipliziert sie mit 100
+    this.classificationPropability = Math.round(this.classificationPropability * 10000) / 100;
+    
 
     for (const [key, value] of Object.entries(TrashCategories)) {
       for (const [subKey, subValue] of Object.entries(value)) {
@@ -134,11 +146,24 @@ export class HomePage implements OnDestroy{
 
   getTrashColor(category: string): string {
     if (category === 'Wertstoffmüll') {
-      return 'yellow';
+      return '#ECC753';
     } else if (category === 'Papiermüll') {
       return 'blue';
     } else {
-      return 'black';
+      return '#141814';
+    }
+  }
+
+  getCategoryAdvice(): string {
+    if (TrashCategories['plastic']['yoghurt'] === this.classifiedCategory) {
+      console.log('Yoghurt advice');
+      return 'Hinweis: Bitte entferne den Alu-Deckel, sonst kann der Becher nicht recycled werden. Entsorge Papierbanderolen bitte separat im Papiermüll.';
+    } else if (TrashCategories['trash']['ballpen'] === this.classifiedCategory) {
+      console.log('Ballpen advice');
+      return 'Hinweis: Zerlege den Kugelschreiber in seine Einzelteile bevor du ihn entsorgst.';
+    } else {
+      console.log('No advice');
+      return '';
     }
   }
 }
