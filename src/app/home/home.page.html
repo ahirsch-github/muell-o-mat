@@ -29,8 +29,8 @@
           <ion-button (click)="onButtonPressed()" color="primary" style="height: 100px; width: 300px; font-size: x-large;" class="sigmar-regular">Bild aufnehmen</ion-button>
         </ng-container>
         <ng-container *ngIf="isLoading === true && isFinished !== true">
-          <ion-spinner name="circles" style="margin-top: 10px; height: 56px; width: 56px;" message="Daten werden verarbeitet..."></ion-spinner>
-          <ion-label class="shippori-antique" style="font-size: large; margin-top: 15px;">Daten werden verarbeitet...</ion-label>
+          <ion-spinner name="circles" style="margin-top: 10px; height: 56px; width: 56px;"></ion-spinner>
+          <ion-label class="shippori-antique" style="font-size: large; margin-top: 15px;">Müll wird bestimmt...</ion-label>
         </ng-container>
         <ng-container *ngIf="isFinished === true">
           <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
