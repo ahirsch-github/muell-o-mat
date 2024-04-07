@@ -31,28 +31,31 @@ The project uses the following hardware components:
 - Arduino Portenta Vision Shield with HM-10B0 Camera Module
 
 ## Model Training
+To better understand the used model and therefore how the Müll-O-Mat works, this section provides an overview of the model training process.
+
 The model was trained on a dataset of 402 images, which were collected by the project team as well as collected from the internet:
 - yoghurt cups (source: self-collected)
 - reciepts (source: self-collected)
 - ball pens (source: self-collected and [Roboflow Universe](https://universe.roboflow.com/mohammed-fuhvg/boya-tanimi))
 
-The Dataset was split into 80% training and 20% testing data so the model was trained on:
+
+The model was trained based on a dataset that was split into 80% training data and 20% test data. Thus, the model was trained on the following images:
+
 - 80 yoghurt cup images
 - 115 reciept images
 - 127 ball pen images
 
-The model was trained using the Edge Impulse platform and the following processing steps were applied to the images:
-- Image resolution: 96x96 pixels
-- Color mode: Grayscale
+The model was trained utilizing the Edge Impulse platform. During the training process, the images underwent the following processing steps:
+- The image resolution was adjusted to 96x96 pixels.
+- The color mode was set to Grayscale.
 
-The model was trained using the following parameters:
+Following parameters were used for the training process:
 - Training epochs: 100
 - Learning rate: 0.0005
 - Data augmentation applied
 - Validation split: 0.2
 
-The model was trained using the following architecture:
-- Model: MobileNetV1 with 0.2 alpha, no final dense layer and 0.1 dropout rate
+The model was trained using a MobileNetV1 architecture, configured with an alpha of 0.2, without a final dense layer, and a dropout rate of 0.1.
 
 The model was initialized with the weights of an already pretrained Image Classification model provided by Edge Impulse.
 
@@ -66,7 +69,7 @@ To install the application, you need to have the following hardware components:
 - Arduino Portenta H7
 - Arduino Portenta Vision Shield with HM-10B0 Camera Module
 
-On the Arduino Portenta H7 board, you need to have the trained model deployed. You can find the firmware with the trained model in the `firmware` folder of this repository. To deploy the firmware, you need to connect the Arduino Portenta H7 board to your computer and upload the firmware with the correct script for your operating system.
+On the Arduino Portenta H7 board, you need to have the trained model deployed. You can find the firmware with the trained model in the [firmware](./firmware) folder of this repository. To deploy the firmware, you need to connect the Arduino Portenta H7 board to your computer and upload the firmware with the correct script for your operating system.
 
 ### Software
 To run the web application, you need to have the following software components:
