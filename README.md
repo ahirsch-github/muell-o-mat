@@ -146,6 +146,13 @@ If the predicted class has corresponding additional information, the information
 
 ![Result Screen Yoghurt Cup](./images/yoghurt-classification-screen.png)
 
+## References
+- [Roboflow Universe](https://universe.roboflow.com)
+- [Edge Impulse](https://studio.edgeimpulse.com)
+
+## Contributing
+
+Contributions are welcome! Whether it's through submitting bug reports, proposing new features, or helping with code, we encourage you to get involved in making Müll-O-Mat even better.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
