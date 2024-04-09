@@ -3,9 +3,9 @@ Welcome to the Müll-O-Mat! This project is a TinyML-based web application that 
 
 ## Features
 
-Waste Classification: Instant classification of waste items into predefined categories using image recognition.
-User-Friendly Interface: An intuitive web application that makes waste sorting simple and quick.
-Cross-Platform Compatibility: Built with Ionic framework for a consistent experience on Android, iOS, and web.
+- Waste Classification: Instant classification of waste items into predefined categories using image recognition.
+- User-Friendly Interface: An intuitive web application that makes waste sorting simple and quick.
+- Cross-Platform Compatibility: Built with Ionic framework for a consistent experience on Android, iOS, and web.
 
 ![Ball Pen Classification](./images/ballpen-classification-screen.png)
 
