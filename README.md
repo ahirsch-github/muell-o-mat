@@ -57,7 +57,13 @@ The model was trained using a MobileNetV1 architecture, configured with an alpha
 
 The model was initialized with the weights of an already pretrained Image Classification model provided by Edge Impulse.
 
-Based on the validation data, the model achieved an accuracy of 0.90 and a loss of 0.19. The test data was used to evaluate the model's performance and the model achieved an accuracy of 0.9577.
+Based on the validation data, the model achieved an accuracy of 0.90 and a loss of 0.19. 
+
+![Training Stats](./images/train-stats.png)
+
+The test data was used to evaluate the model's performance and the model achieved an accuracy of 0.9577.
+
+![Testing Stats](./images/test-stats.png)
 
 The model was converted with the EON compiler to optimize the model for the Arduino Portenta H7 board. It quantized the model to 8-bit integers. The firmware was then build for the Arduino Portenta H7 board and deployed on the board.
 
